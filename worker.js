@@ -1,4 +1,4 @@
-let seconds = 10;
+let seconds = 1200;
 let timerId = null;
 self.onmessage = function(e) {
     if (e.data.type === 'START') {
@@ -14,13 +14,14 @@ self.onmessage = function(e) {
             }
         }, 1000);
     } else if (e.data.type === 'RESET_TIMER') {
-        seconds = 10; // Reset to 20 minutes
+        seconds = 1200; // Reset to 20 minutes
         postMessage({ type: 'TICK', value: seconds });
         // Automatically start the next 20-min cycle
         self.onmessage({ data: { type: 'START' } });
     } else if (e.data.type === 'STOP') {
         clearInterval(timerId);
         timerId = null;
-        seconds = 10;
+        seconds = 1200;
     }
+
 };
